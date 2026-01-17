@@ -28,13 +28,13 @@ export default function AIBubble({ weather }: { weather: string }) {
   }, [weather]);
 
   return (
-    <div className="bg-gradient-to-br from-blue-600/10 to-purple-600/10 backdrop-blur-xl border border-white/10 p-5 rounded-[2rem] flex gap-4 transition-all duration-500 hover:border-white/20">
-      <div className="bg-white/10 p-3 rounded-2xl h-fit animate-bounce">
+    <div className="bg-gradient-to-br from-blue-600/10 to-purple-600/10 backdrop-blur-xl border border-white/10 p-4 md:p-5 rounded-[2rem] flex gap-4 transition-all duration-500 hover:border-white/20 ai-bubble">
+      <div className="bg-white/10 p-3 rounded-2xl h-fit animate-bounce flex-shrink-0">
         <Sparkles className="h-5 w-5 text-blue-300" />
       </div>
-      <div>
+      <div className="min-w-0">
         <h4 className="text-[10px] font-bold text-blue-300 uppercase tracking-widest mb-1">AI Assistant</h4>
-        <p className="text-sm text-white/80 leading-relaxed min-h-[40px]">
+        <p className="text-xs md:text-sm text-white/80 leading-relaxed min-h-[40px] break-words">
           {text}<span className="animate-pulse">|</span>
         </p>
       </div>

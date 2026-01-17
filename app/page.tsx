@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import LiveClock from '@/components/LiveClock';
 import Sidebar from '@/components/Sidebar';
 import WeatherMain from '@/components/WeatherMain';
 import Forecast from '@/components/Forecast';
@@ -71,12 +72,15 @@ export default function WeatherApp() {
     Clouds: 'https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?q=80&w=1920&auto=format&fit=crop',
     Mist: 'https://images.unsplash.com/photo-1543968996-ee822b8176ba?q=80&w=1920&auto=format&fit=crop',
     Fog: 'https://images.unsplash.com/photo-1487621167305-5d248087c724?q=80&w=1920&auto=format&fit=crop',
-    Haze: 'https://images.unsplash.com/photo-1533757083905-41cb544ad33b?q=80&w=1920&auto=format&fit=crop'
+    Haze: 'https://images.pexels.com/photos/1367192/pexels-photo-1367192.jpeg?auto=compress&cs=tinysrgb&w=1920',
   };
 
   return (
-    <main className="relative h-screen w-full overflow-hidden flex transition-all duration-1000" suppressHydrationWarning>
+    <main className="relative h-screen w-full overflow-hidden flex transition-all duration-1000 weather-app-main" suppressHydrationWarning>
       
+      {/* Live Clock - Top Right Corner */}
+      <LiveClock />
+
       {/* 1. Dynamic Background Image */}
       <div 
         className="absolute inset-0 z-0 transition-all duration-1000 ease-in-out scale-105"
@@ -91,20 +95,20 @@ export default function WeatherApp() {
       {/* 2. Glassmorphism Overlay */}
       <div className="absolute inset-0 z-[1] bg-black/10 backdrop-blur-[1px] pointer-events-none" />
 
-      {/* 3. Forecast Drawer (Side Panel) */}
+      {/* 3. Forecast Drawer (Side Panel) - Mobile: Full width */}
       <ForecastDrawer 
         isOpen={isDrawerOpen} 
         onClose={() => setDrawerOpen(false)} 
         forecastList={forecastData?.list || []} 
       />
 
-      {/* 4. Left Sidebar */}
-      <aside className="w-[400px] h-full z-20 relative">
+      {/* 4. Left Sidebar - Mobile: Top section, stacked */}
+      <aside className="w-[400px] h-full z-20 relative weather-sidebar-container">
         <Sidebar weatherData={weatherData} />
       </aside>
 
-      {/* 5. Main Center/Right Content */}
-      <section className="flex-1 flex flex-col p-14 z-10 relative">
+      {/* 5. Main Center/Right Content - Mobile: Full width, stacked */}
+      <section className="flex-1 flex flex-col p-14 z-10 relative weather-main-content">
         <div className="flex-1">
           <WeatherMain 
             weather={mood} 
@@ -114,8 +118,8 @@ export default function WeatherApp() {
           />
         </div>
 
-        {/* Bottom Hourly Flow Graph */}
-        <div className="mt-auto pt-10 border-t border-white/10 backdrop-blur-md rounded-[30px] p-8 bg-white/5 transition-all duration-500 hover:bg-white/10">
+        {/* Bottom Hourly Flow Graph - Mobile: Responsive grid */}
+        <div className="mt-auto pt-10 border-t border-white/10 backdrop-blur-md rounded-[30px] p-8 bg-white/5 transition-all duration-500 hover:bg-white/10 forecast-section">
           <div className="flex justify-between items-center mb-8">
             <p className="text-[10px] font-bold opacity-30 uppercase tracking-[0.5em] text-white">
               7-Hour Atmospheric Flow

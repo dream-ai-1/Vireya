@@ -63,3 +63,465 @@ body {
   opacity: 0.15;
   pointer-events: none;
 }
+
+/* ========== MOBILE RESPONSIVE STYLES ========== */
+/* Primary breakpoint: ≤480px, Secondary: 481px-768px */
+
+/* Mobile: Hide sidebar on screens ≤768px and stack layout vertically */
+@media (max-width: 768px) {
+  /* Main layout becomes vertical stack */
+  main.weather-app-main {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  /* Sidebar becomes full-width top section or hidden */
+  aside.weather-sidebar-container {
+    width: 100% !important;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Main content takes full width and stacks */
+  section.weather-main-content {
+    padding: clamp(1rem, 4vw, 2rem) !important;
+  }
+
+  /* Reduce padding/gap on mobile */
+  section.weather-main-content > div:first-child {
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+}
+
+/* Mobile: Extra small screens ≤480px */
+@media (max-width: 480px) {
+  /* Reduce padding further */
+  section.weather-main-content {
+    padding: 1rem !important;
+  }
+
+  /* Forecast grid becomes 4 columns on mobile */
+  .forecast-grid-mobile {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: clamp(0.5rem, 2vw, 1rem);
+  }
+
+  /* Ensure text doesn't overflow */
+  h1.weather-heading-main {
+    font-size: clamp(2rem, 15vw, 4rem);
+    line-height: 1;
+  }
+
+  /* Button touch targets min 44px */
+  button.forecast-button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 4vw, 1.5rem);
+  }
+
+  /* Weather stats section - stack vertically */
+  .weather-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Sunset widget - full width on mobile */
+  .sunset-widget {
+    width: 100% !important;
+    max-width: 100%;
+  }
+}
+
+/* Medium mobile/tablet: 481px-768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Forecast grid becomes 5 columns */
+  .forecast-grid-mobile {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 1rem;
+  }
+
+  h1.weather-heading-main {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+  }
+
+  section.weather-main-content {
+    padding: 1.5rem;
+  }
+}
+
+/* Forecast Drawer - Full width on mobile */
+@media (max-width: 768px) {
+  .forecast-drawer-mobile {
+    width: 100% !important;
+    height: auto;
+    max-height: 80vh;
+    left: 0 !important;
+    top: 0 !important;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .forecast-drawer-mobile.closed {
+    display: none;
+  }
+}
+
+/* Ensure no horizontal scrolling */
+@media (max-width: 480px) {
+  main {
+    overflow-x: hidden;
+  }
+
+  * {
+    max-width: 100%;
+  }
+}
+
+/* Touch-friendly spacing for small screens */
+@media (max-width: 480px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .stat-item {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+}
+
+/* ========== DESKTOP BASELINE (≥1025px) - MUST REMAIN UNCHANGED ========== */
+/* This ensures no modifications to the desktop layout */
+
+/* ========== TABLET LARGE (769px - 1024px) - Minor responsive adjustments ========== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  aside.weather-sidebar-container {
+    width: 320px !important;
+  }
+
+  section.weather-main-content {
+    padding: 10px !important;
+  }
+
+  h1.weather-heading-main {
+    font-size: 6rem;
+  }
+
+  .sunset-widget {
+    width: 70% !important;
+  }
+}
+
+/* ========== LARGE MOBILE/SMALL TABLET (481px - 768px) ========== */
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Show sidebar normally but ensure it fits */
+  aside.weather-sidebar-container {
+    width: 100% !important;
+    height: auto;
+    padding: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Sidebar text optimization */
+  h2.clamp-temperature {
+    font-size: clamp(3.5rem, 10vw, 5rem);
+  }
+
+  /* Heading responsive sizing */
+  h1.weather-heading-main {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+  }
+
+  /* Forecast grid - 5 columns */
+  .forecast-grid-mobile {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 1rem;
+  }
+
+  /* Content padding */
+  section.weather-main-content {
+    padding: 1.5rem;
+  }
+
+  /* Sunset widget - full width but reasonable height */
+  .sunset-widget {
+    width: 100% !important;
+    max-height: 180px;
+  }
+
+  /* AI Bubble - full width */
+  .ai-bubble {
+    width: 100%;
+  }
+
+  /* Button responsive sizing */
+  .forecast-button {
+    min-height: 44px;
+    width: 100%;
+  }
+}
+
+/* ========== SMALL MOBILE (≤480px) - Primary mobile focus ========== */
+@media (max-width: 480px) {
+  /* Main layout: Stack vertically */
+  main.weather-app-main {
+    flex-direction: column;
+    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  /* Sidebar: Full width at top */
+  aside.weather-sidebar-container {
+    width: 100% !important;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+  }
+
+  /* Sidebar text - prevent overflow */
+  h2.clamp-temperature {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    word-break: break-word;
+  }
+
+  .description-text {
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+    word-break: break-word;
+  }
+
+  /* Main content: Full width */
+  section.weather-main-content {
+    padding: 1rem;
+    flex: 1;
+    gap: 1rem;
+  }
+
+  /* Weather heading - responsive sizing */
+  h1.weather-heading-main {
+    font-size: clamp(2rem, 15vw, 3rem);
+    line-height: 1;
+    word-break: break-word;
+  }
+
+  /* Status update text - responsive sizing */
+  .description-text {
+    font-size: clamp(1.5rem, 10vw, 2rem);
+  }
+
+  /* Sunset widget - full width, responsive height */
+  .sunset-widget {
+    width: 100% !important;
+    max-width: 100%;
+    padding: 1rem;
+    max-height: 150px;
+  }
+
+  /* Forecast section padding reduction */
+  .forecast-section {
+    padding: 1rem;
+    margin-top: auto;
+    border-radius: 1rem;
+  }
+
+  /* Forecast grid - 4 columns for better mobile viewing */
+  .forecast-grid-mobile {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .forecast-grid-mobile .flex {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Temperature bar - scale down for mobile */
+  .forecast-grid-mobile .h-16 {
+    height: 3rem;
+  }
+
+  .forecast-grid-mobile .text-xs {
+    font-size: 0.75rem;
+  }
+
+  /* AI Bubble - full width */
+  .ai-bubble {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  .ai-bubble h4 {
+    font-size: clamp(0.625rem, 1.5vw, 0.75rem);
+  }
+
+  .ai-bubble p {
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    line-height: 1.4;
+  }
+
+  /* Forecast button - full width, touch-friendly */
+  .forecast-button {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.75rem;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .forecast-button > div {
+    width: 100%;
+  }
+
+  .forecast-button > div:first-child span {
+    font-size: clamp(0.625rem, 1.5vw, 0.75rem);
+  }
+
+  .forecast-button > div:first-child span:last-child {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+
+  /* Weather stats - no grid, stack vertically */
+  .weather-stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .stat-item {
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item .flex {
+    gap: 1rem;
+  }
+
+  .stat-item span {
+    font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  }
+
+  /* Search input area - responsive */
+  .flex.justify-between.items-center:first-child {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Forecast Drawer - Full width, from top */
+  .forecast-drawer-mobile {
+    width: 100% !important;
+    height: auto;
+    max-height: 85vh;
+    left: 0 !important;
+    top: 0 !important;
+    bottom: 0;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  /* Ensure smooth scrolling */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Prevent text selection on touch */
+  button {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* SVG responsiveness */
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Modal backdrop */
+  .fixed.inset-0.bg-black\/60 {
+    z-index: 40;
+  }
+}
+
+/* ========== LIVE CLOCK STYLING - FUTURISTIC ========== */
+.live-clock-container {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.live-clock {
+  animation: subtle-glow 3s ease-in-out infinite;
+}
+
+@keyframes subtle-glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(100, 200, 255, 0.2), 0 0 20px rgba(100, 200, 255, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(100, 200, 255, 0.3), 0 0 30px rgba(100, 200, 255, 0.15);
+  }
+}
+
+.live-clock-time {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+.live-clock-date {
+  letter-spacing: 0.15em;
+}
+
+/* Mobile: Reduce size and adjust positioning */
+@media (max-width: 768px) {
+  .live-clock-container {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+  }
+
+  .live-clock-time {
+    font-size: 1.125rem;
+  }
+
+  .live-clock-date {
+    font-size: 0.7rem;
+  }
+}
+
+/* Extra small mobile: Further optimizations */
+@media (max-width: 480px) {
+  .live-clock-container {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.75rem;
+    border-width: 0.5px;
+  }
+
+  .live-clock-time {
+    font-size: 0.875rem;
+  }
+
+  .live-clock-date {
+    font-size: 0.65rem;
+  }
+
+  .live-clock {
+    animation: none;
+  }
+
+  .live-clock-time {
+    text-shadow: 0 0 5px rgba(100, 200, 255, 0.1);
+  }
+}
